@@ -13,5 +13,6 @@ new Miaou\Services\Gutenberg();
 new Miaou\Services\EnqueueAssets();
 
 // custom post types 
+new Miaou\Services\RegisterCustomPostTypes();
 
 // acf features  
