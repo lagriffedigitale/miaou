@@ -1,0 +1,19 @@
+{
+    "name": "lagriffedigitale/miaou",
+    "description": "Miaou WordPress starter theme",
+    "type": "project",
+    "authors": [
+        {
+            "name": "ALLEGRE Jérôme",
+            "email": "jerome@lagriffe-digitale.fr"
+        }
+    ],
+    "require": {
+        "kint-php/kint": "^3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Miaou\\": "inc/"
+        }
+    }
+}
