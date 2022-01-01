@@ -1,5 +1,5 @@
 <?php
-namespace Miaou\Services;
+namespace Miaou\Theme\Services;
 
 class ThemeInitialisation
 {
@@ -17,16 +17,16 @@ class ThemeInitialisation
         add_filter('upload_mimes', [$this, 'allowedMimeTypes']);
 
         // load i18n - theme textdomain 
-        add_action('after_theme_setup', [$this, 'loadThemeTextDomain'], 100);
+        add_action('after_setup_theme', [$this, 'loadThemeTextDomain'], 100);
 
         // theme support 
-        add_action('after_theme_setup', [$this, 'initThemeSupport'], 110);
+        add_action('after_setup_theme', [$this, 'initThemeSupport'], 110);
 
         // register menus 
-        add_action('after_theme_setup', [$this, 'registerNavMenus'], 115);
+        add_action('after_setup_theme', [$this, 'registerNavMenus'], 115);
 
         // register custom image sizes
-        add_action('after_theme_setup', [$this, 'registerCustomImageSizes'], 120);
+        add_action('after_setup_theme', [$this, 'registerCustomImageSizes'], 120);
     }
 
     public function disableCommentsFromAdminBar() : void
@@ -82,6 +82,8 @@ class ThemeInitialisation
         add_theme_support('menus');
         add_theme_support('html5', ['comment-list', 'comment-form', 'search-form', 'gallery', 'caption']);
         add_theme_support('woocommerce');
+
+        add_theme_support('align-wide');
         
         // remove emoji support 
         remove_action('wp_head', 'print_emoji_detection_script', 7);

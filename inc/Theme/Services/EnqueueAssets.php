@@ -1,5 +1,5 @@
 <?php
-namespace Miaou\Services;
+namespace Miaou\Theme\Services;
 
 class EnqueueAssets
 {
@@ -10,8 +10,10 @@ class EnqueueAssets
 
         add_action('wp_enqueue_scripts', [$this, 'addInlineScripts'], 120);
 
-        add_action('wp_enqueue_scripts', [$this, 'dequeueScripts'], 130);
-        add_action('wp_enqueue_scripts', [$this, 'dequeueStyles'], 140);
+        add_action('wp_enqueue_scripts', [$this, 'dequeueScripts'], 1);
+        add_action('wp_enqueue_scripts', [$this, 'dequeueStyles'], 1);
+
+        add_action('wp_print_styles', [$this, 'dequeueInlineStyles'], 1);
     }
 
     public function enqueueScripts() : void
@@ -50,23 +52,24 @@ class EnqueueAssets
         }
     }
 
-    public function addInlineScripts() : void 
+    public function addInlineScripts() : void
     {
         $scriptFiles = require CONFIG_DIR . '/scripts.config.php';
         $inlineScripts = require CONFIG_DIR . '/inline-scripts.config.php';
 
         if (!empty($scriptFiles[0]['handle']) && !empty($inlineScripts)) {
             wp_add_inline_script(
-                $scriptFiles[0]['handle'], 
-                $inlineScripts, 
+                $scriptFiles[0]['handle'],
+                $inlineScripts,
                 'before'
             );
         }
     }
 
-    public function dequeueScripts() : void 
+    public function dequeueScripts() : void
     {
         wp_deregister_script('wp-embed');
+        wp_deregister_script('wp-block-navigation-view');
     }
 
     public function dequeueStyles() : void
@@ -74,5 +77,10 @@ class EnqueueAssets
         wp_dequeue_style('wp-block-library');
         wp_dequeue_style('wp-block-library-theme');
         wp_dequeue_style('wc-block-style');
+    }
+
+    public function dequeueInlineStyles() : void
+    {
+        wp_dequeue_style('wp-block-library');
     }
 }

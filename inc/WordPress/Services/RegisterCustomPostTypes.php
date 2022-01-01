@@ -1,5 +1,5 @@
 <?php 
-namespace Miaou\Services;
+namespace Miaou\WordPress\Services;
 
 class RegisterCustomPostTypes 
 {

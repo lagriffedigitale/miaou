@@ -4,15 +4,20 @@ require_once(__DIR__ . '/vendor/autoload.php');
 require_once(__DIR__ . '/config/constants.config.php');
 
 // theme initialisation 
-new Miaou\Services\ThemeInitialisation();
-
-// gutenberg features
-new Miaou\Services\Gutenberg();
+new Miaou\Theme\Services\ThemeInitialisation();
 
 // enqueue assets
-new Miaou\Services\EnqueueAssets();
+new Miaou\Theme\Services\EnqueueAssets();
 
 // custom post types 
-new Miaou\Services\RegisterCustomPostTypes();
+new Miaou\WordPress\Services\RegisterCustomPostTypes();
 
-// acf features  
+// gutenberg features
+new Miaou\Gutenberg\Services\Pattern();
+new Miaou\Gutenberg\Services\RenderBlock();
+
+
+function get_picture_datas(int $attachment_id) : array 
+{
+    return Miaou\Theme\Services\Attachment::getAttachmentDatas($attachment_id);
+}

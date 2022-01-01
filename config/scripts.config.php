@@ -1,5 +1,5 @@
 <?php 
-apply_filters('miaou_script_list', [
+return apply_filters('miaou_script_list', [
     [
         'handle' => 'miaou-app',
         'path' => JS_DIR . '/app.js',
