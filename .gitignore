@@ -2,12 +2,12 @@
 node_modules/
 
 vendor/
+dist/
 
 composer.lock.json
-
-.DS_Store
 
 # ignore log files and databases
 *.log
 *.sql
 *.sqlite
+.DS_Store
